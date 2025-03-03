@@ -1,7 +1,7 @@
 [options]
 addons_path = addons
 db_host = localhost
-db_password = odoo
-db_user = odoo
+db_password = Lehoan2608
+db_user = postgres
 db_port = 5432
-xmlrpc_port = 7000
+xmlrpc_port = 8069

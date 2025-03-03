@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem
+            id="menu_root"
+            name="PM"
+            sequence="0"/>
+          
+        <menuitem name="Quản lý dự án" 
+            id="menu_projects" 
+            parent="menu_root" 
+            sequence="1"
+            action="action_projects"
+        />
+
+        <menuitem name="Quản lý thành viên" 
+            id="menu_employees" 
+            parent="menu_root" 
+            sequence="2"
+            action="action_employees"
+        />
+        
+        <menuitem name="Quản lý công việc" 
+            id="menu_taskss" 
+            parent="menu_root" 
+            sequence="3"
+            action="action_taskss"
+        />
+
+        <menuitem name="Quản lý ngân sách" 
+            id="menu_budgets" 
+            parent="menu_root" 
+            sequence="4"
+            action="action_budgets"
+        />
+
+        <menuitem name="Chi phí dự án" 
+            id="menu_expenses" 
+            parent="menu_root" 
+            sequence="5"
+            action="action_expenses"
+        />
+    </data>
+</odoo>
