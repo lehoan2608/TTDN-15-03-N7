@@ -17,9 +17,9 @@ class Employees(models.Model):
     )
 
     # Thiết lập mối quan hệ Many2many với model 'employees'
-    projects_ids = fields.Many2many('projects', string = 'Dự án')
+    # projects_ids = fields.Many2many('projects', string = 'Dự án')
     # Một nhân viên có nhiều công việc
-    taskss_ids = fields.One2many('taskss', inverse_name='assigned_to', string='Công việc được giao')
+    # taskss_ids = fields.One2many('taskss', inverse_name='assigned_to', string='Công việc được giao')
 
     employees_hometown = fields.Char('Quê quán')
     employees_email = fields.Char('Email')

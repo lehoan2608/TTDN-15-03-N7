@@ -19,13 +19,19 @@ class Budgets(models.Model):
     budget_spent = fields.Float(string="Chi phí Thực tế", compute="_compute_budget_spent", store=True)
     budget_difference = fields.Float(string="Chênh lệch Ngân sách", compute="_compute_budget_difference", store=True)
 
-    @api.depends('projects_id.expense_ids.amount')
+
+    @api.depends('expense_ids.amount')  # Sửa lại depend field
     def _compute_budget_spent(self):
         for record in self:
-            if record.projects_id:
-                record.budget_spent = sum(record.projects_id.expense_ids.mapped('amount'))
-            else:
-                record.budget_spent = 0
+            record.budget_spent = sum(record.expense_ids.mapped('amount'))
+
+    # @api.depends('projects_id.expense_ids.amount')
+    # def _compute_budget_spent(self):
+    #     for record in self:
+    #         if record.projects_id:
+    #             record.budget_spent = sum(record.projects_id.expense_ids.mapped('amount'))
+    #         else:
+    #             record.budget_spent = 0
 
 
     @api.depends('budget_planned', 'budget_spent')

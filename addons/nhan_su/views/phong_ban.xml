@@ -9,8 +9,11 @@
                     <sheet>
                         <div class="oe_read_only" style="font-size:25px">Phòng ban</div>
                         <group col="4" string="Thông tin chung">
-                            <field name="ma_phong_ban"/>
+                            <!-- <field name="ma_phong_ban"/> -->
                             <field name="ten_phong_ban"/>
+                            <field name="nhan_vien_ids">
+                            
+                            </field>
                         </group>
                     </sheet>
                 </form>
@@ -22,8 +25,9 @@
             <field name="model">phong_ban</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="ma_phong_ban"/>
+                    <!-- <field name="ma_phong_ban"/> -->
                     <field name="ten_phong_ban"/>
+                    <field name="nhan_vien_ids"/>
                     
                 </tree>
             </field>
@@ -33,10 +37,13 @@
             <field name="model">phong_ban</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="ma_phong_ban"/>
+                    <!-- <field name="ma_phong_ban"/> -->
                     <field name="ten_phong_ban"/>
-                    
+                    <field name="nhan_vien_ids"/>
                 </search>
+                <!-- <searchpanel>
+                    <field name="nhan_vien_ids" select="multi"/>
+                </searchpanel> -->
             </field>
         </record>
 

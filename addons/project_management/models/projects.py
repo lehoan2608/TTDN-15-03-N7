@@ -5,13 +5,12 @@ class Projects(models.Model):
     _name = 'projects'
     _description = 'Quản lý dự án'
 
-    projects_id = fields.Char("Mã dự án", required=True)
-    projects_name = fields.Char("Tên dự án", required=True)
+    projects_id = fields.Char("Mã dự án")
+    projects_name = fields.Char("Tên dự án")
     
-    # manager_id = fields.Many2one(string="Quản lý dự án")
+    manager_name = fields.Many2one('nhan_vien', string="Quản lý dự án")
 
     start_date = fields.Date("Ngày bắt đầu")
-    # end_date = fields.Date("Thời gian dự kiến hoàn thành")
     actual_end_date = fields.Date("Ngày kết thúc thực tế")
 
     progress = fields.Float("Tiến độ (%)", compute='_compute_progress', store=True)
@@ -23,8 +22,31 @@ class Projects(models.Model):
             ('delayed', 'Trì hoãn'),
             ('cancelled', 'Hủy bỏ')
         ], 
-        string='Trạng thái'
+        string='Trạng thái', store=True
     )
+
+    ly_do_1 = fields.Text(string="Lý do hủy bỏ", help="Lý do hủy bỏ công việc")
+
+    # status_class = fields.Char(string='Status Class', compute='_compute_status_class', store=True)
+
+    # @api.depends('status')
+    # def _compute_status_class(self):
+    #     for record in self:
+    #         if record.status == 'not_started':
+    #             record.status_class = 'status-not-started'
+    #         elif record.status == 'in_progress':
+    #             record.status_class = 'status-in-progress'
+    #         elif record.status == 'completed':
+    #             record.status_class = 'status-completed'
+    #         elif record.status == 'delayed':
+    #             record.status_class = 'status-delayed'
+    #         elif record.status == 'cancelled':
+    #             record.status_class = 'status-cancelled'
+    #         else:
+    #             record.status_class = ''
+
+    # status_display = fields.Html(string="Status Display", compute="_compute_status_display", sanitize=False)
+
 
     task_ids = fields.One2many('taskss', inverse_name='projects_id', String='Công việc') 
 
@@ -43,20 +65,27 @@ class Projects(models.Model):
             else:
                 project.progress = 0
 
-
-
-    # Thiết lập mối quan hệ Many2many với model 'employees'
-    employees_ids = fields.Many2many('employees', string='Thành viên tham gia', help='Chọn các thành viên tham gia dự án')
+    # nhan_vien_ids = fields.Many2many('nhan_vien', string='Thành viên tham gia', help='Chọn các thành viên tham gia dự án')
 
     def name_get(self):
         result = []
         for record in self:
-            name = f"{record.projects_id} - {record.projects_name}"
+            name = f"{record.projects_id}"
+
             result.append((record.id, name))
         return result
     
-
-
-    # Thiết lập mối quan hệ với budgets và expenses
     budget_ids = fields.One2many('budgets', inverse_name='projects_id', string="Ngân sách Dự án")
-    expense_ids = fields.One2many('expenses', inverse_name='projects_id', string="Chi phí Dự án")
+
+    def action_view_task_chart(self):
+        self.ensure_one()  # Đảm bảo phương thức chỉ xử lý một bản ghi
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Biểu Đồ Công Việc Công Việc',
+            'res_model': 'taskss',
+            'view_mode': 'graph',
+            'domain': [('projects_id', '=', self.id)],  # Lọc công việc theo dự án hiện tại
+            # Đặt giá trị mặc định cho trường projects_id
+            'context': {'search_default_group_by_projects_id': self.id},
+            'target': 'current',
+        }

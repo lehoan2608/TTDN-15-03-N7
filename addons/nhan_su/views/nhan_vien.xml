@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!-- <record id="view_id" model="ir.ui.view" >
-            <field name="name">nhan_vien</field>
-            <field name="model">nhan_vien</field>
-            <field name="priority" eval="16"></field>
-            <field name="arch" type="xml">
-            </field>
-        </record> -->
 
         <record id="view_nhan_vien_form" model="ir.ui.view">
             <field name="name">nhan_vien</field>
@@ -17,18 +10,19 @@
                     <sheet>
                         <div class="oe_read_only" style="font-size:25px">Nhân viên</div>
                         <group col="4" string="Thông tin chung">
-                            <field name="nhan_vien_id"/>
+                            
                             <field name="ho_ten_dem"/>
                             <field name="ten"/>
+                            <field name="nhan_vien_id"/>
                             <field name="ho_ten"/>
-                            <field name="ma_dinh_danh"/>
+                            <field name="chuc_vu_id"/>
+                            <!-- <field name="projects_ids" widget="many2many_tags"/> -->
                             <field name="ngay_sinh"/>
-                            <field name="tuoi"/>
+                            <field name="gioi_tinh"/>
                             <field name="que_quan"/>
                             <field name="email"/>
                             <field name="so_dien_thoai"/>
-
-                            <field name="gioi_tinh"/>
+                            <field name="phong_ban_id"/>
 
                         </group>
                         <notebook>
@@ -47,15 +41,14 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="nhan_vien_id"/>
-                    <!-- <field name="ho_ten_dem"/>
-                    <field name="ten"/> -->
+                    <field name="chuc_vu_id"/>
                     <field name="ho_ten"/>
                     <field name="ngay_sinh"/>
+                    <field name="gioi_tinh"/>
                     <field name="que_quan"/>
                     <field name="email"/>
                     <field name="so_dien_thoai"/>
-
-                    <field name="gioi_tinh"/>
+                    <field name="phong_ban_id"/>
 
                 </tree>
             </field>
@@ -66,16 +59,19 @@
             <field name="arch" type="xml">
                 <search>
                     <field name="nhan_vien_id"/>
-                    <!-- <field name="ho_ten_dem"/>
-                    <field name="ten"/> -->
+                    <field name="chuc_vu_id"/>
                     <field name="ho_ten"/>
                     <field name="ngay_sinh"/>
+                    <field name="gioi_tinh"/>
                     <field name="que_quan"/>
                     <field name="email"/>
-                    <field name="so_dien_thoai"/>
-
-                    <field name="gioi_tinh"/>
-
+                    <field name="so_dien_thoai"/> 
+                    <field name="phong_ban_id"/> 
+                    
+                    <!-- <searchpanel>
+                        <field name="chuc_vu_id" select="multi"/>
+                        <field name="phong_ban_id" select="multi"/>
+                    </searchpanel> -->
                 </search>
             </field>
         </record>

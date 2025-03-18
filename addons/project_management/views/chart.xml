@@ -18,18 +18,7 @@
                                 <field name="start_date"/>
                                 <field name="actual_end_date"/>
                                 <field name="progress"/>
-                                <field name="status"
-                                    decoration-muted="status == 'not_started'"
-                                    decoration-warning="status == 'in_progress'"
-                                    decoration-success="status == 'completed'"  
-                                    decoration-info="status == 'delayed'"
-                                    decoration-danger="status == 'cancelled'"                           
-                                />
-                                <field name="ly_do_1"
-                                    attrs="{'invisible': [('status', 'not in', ['cancelled', 'delayed'])]}"
-                                    string="Lý do"
-                                    placeholder="Nhập lý do hủy bỏ hoặc trì hoãn..."
-                                />
+                                <field name="status"/>
                             </group>
                             
                         </group>
@@ -73,13 +62,21 @@
                                 </field>
                             </page>
                         </notebook>
-
-
                     </sheet>
                 </form>
             </field>
         </record>
 
+        <record id="view_tien_do_du_an_chart" model="ir.ui.view">
+            <field name="name">tien_do_du_an_chart</field>
+            <field name="model">projects</field>
+            <field name="arch" type="xml">
+                <graph string="Biểu Đồ Tiến Độ Dự Án" type="bar">
+                    <field name="projects_id" type="dimension"/>
+                    <field name="progress" type="measure"/>
+                </graph>
+            </field>
+        </record>
 
         <record id="view_projects_tree" model="ir.ui.view">
             <field name="name">projects.tree</field>
@@ -92,14 +89,9 @@
                     <field name="start_date"/>
                     <field name="actual_end_date"/>
                     <field name="progress"/>
-                    <field name="status"
-                        decoration-muted="status == 'not_started'"
-                        decoration-warning="status == 'in_progress'"
-                        decoration-success="status == 'completed'"
-                        decoration-info="status == 'delayed'"
-                        decoration-danger="status == 'cancelled'"  
-                    />
-                    <button string="Xem Biểu Đồ Công Việc" type="object" name="action_view_task_chart" class="btn-primary"/>              
+                    <field name="status"/>
+                    <button string="Xem Biểu Đồ Công Việc" type="object" name="action_view_task_chart" class="btn-primary"/>
+                    
                 </tree>
             </field>
         </record>
@@ -115,13 +107,7 @@
                     <field name="start_date"/>
                     <field name="actual_end_date"/>
                     <field name="progress"/>
-                    <field name="status"
-                        decoration-muted="status == 'not_started'"
-                        decoration-warning="status == 'in_progress'"
-                        decoration-success="status == 'completed'"   
-                        decoration-info="status == 'delayed'"
-                        decoration-danger="status == 'cancelled'"               
-                    />                    
+                    <field name="status"/>
                     
                 </search>
             </field>
@@ -133,9 +119,15 @@
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_projects_search"/>
         </record>
-        
+
+        <record id="action_bieu_do_du_an" model="ir.actions.act_window">
+            <field name="name">Biểu Đồ Dự Án</field>
+            <field name="res_model">projects</field>
+            <field name="view_mode">graph</field>
+        </record>
+
         <menuitem id="menu_projects_root" name="Dự án"/>
         <menuitem id="menu_projects" name="Danh sách dự án" parent="menu_projects_root" action="action_projects"/>
-        <menuitem id="menu_taskss" name="Danh sách công việc" parent="menu_projects_root" action="action_taskss"/>
+        
     </data>
 </odoo>

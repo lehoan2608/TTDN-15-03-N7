@@ -9,7 +9,8 @@
                     <sheet>
                         <div class="oe_read_only" style="font-size:25px">Chức vụ</div>
                         <group col="4" string="Thông tin chung">
-                            <field name="ma_chuc_vu"/>
+                            <!-- <field name="ma_chuc_vu"/> -->
+                            <field name="nhan_vien_ids"/>
                             <field name="ten_chuc_vu"/>
                         </group>
                     </sheet>
@@ -22,7 +23,8 @@
             <field name="model">chuc_vu</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="ma_chuc_vu"/>
+                    <!-- <field name="ma_chuc_vu"/> -->
+                    <field name="nhan_vien_ids"/>
                     <field name="ten_chuc_vu"/>
                     
                 </tree>
@@ -33,7 +35,8 @@
             <field name="model">chuc_vu</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="ma_chuc_vu"/>
+                    <!-- <field name="ma_chuc_vu"/> -->
+                    <field name="nhan_vien_ids"/>
                     <field name="ten_chuc_vu"/>
                     
                 </search>

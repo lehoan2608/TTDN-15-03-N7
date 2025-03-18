@@ -15,7 +15,7 @@
                             <field name="ten"/>
                             <field name="employees_id"/>
                             <field name="employees_name"/>
-                            <field name="projects_ids" widget="many2many_tags"/>
+                            <!-- <field name="projects_ids" widget="many2many_tags"/> -->
                             <field name="employees_date_of_birth"/>
                             <field name="employees_sex"/>
                             <field name="employees_hometown"/>
@@ -38,7 +38,7 @@
                                 </field>
                             </page>
                         </notebook> -->
-                        <notebook>
+                        <!-- <notebook>
                             <page string="Công Việc">
                                 <field name="taskss_ids">
                                     <tree editable="bottom">
@@ -51,7 +51,7 @@
                                     </tree>
                                 </field>
                             </page>
-                        </notebook>
+                        </notebook> -->
                         
                     </sheet>
                 </form>
@@ -63,10 +63,9 @@
             <field name="model">employees</field>
             <field name="arch" type="xml">
                 <tree>
-                    <!-- <field name="project_ids"/> -->
                     <field name="employees_id"/>
                     <field name="employees_name"/>
-                    <field name="projects_ids"/>
+                    <!-- <field name="projects_ids"/> -->
                     <field name="employees_date_of_birth"/>
                     <field name="employees_sex"/>
                     <field name="employees_hometown"/>
@@ -81,10 +80,9 @@
             <field name="model">employees</field>
             <field name="arch" type="xml">
                 <search>
-                    <!-- <field name="project_ids"/> -->
                     <field name="employees_id"/>
                     <field name="employees_name"/>
-                    <field name="projects_ids"/>
+                    <!-- <field name="projects_ids"/> -->
                     <field name="employees_date_of_birth"/>
                     <field name="employees_sex"/>
                     <field name="employees_hometown"/>

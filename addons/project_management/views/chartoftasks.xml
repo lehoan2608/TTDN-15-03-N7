@@ -13,7 +13,6 @@
                                 <field name="taskss_id"/>
                                 <field name="taskss_name"/>
                                 <field name="nhan_vien_ids" widget="many2many_tags" options="{'no_create': True, 'no_open': False}"/>
-                                <!-- <field name="assigned_to"/> -->
                             </group>
                             <group>
                                 <field name="start_date"/>
@@ -40,6 +39,18 @@
             </field>
         </record>
 
+        <record id="view_tien_do_cong_viec_chart" model="ir.ui.view">
+            <field name="name">tien_do_cong_viec_chart</field>
+            <field name="model">taskss</field>
+            <field name="arch" type="xml">
+                <graph string="Biểu Đồ Tiến Độ Công Việc" type="bar">
+                    <!-- <field name="projects_id" type="row"/> -->
+                    <field name="taskss_id" type="dimension"/>
+                    <field name="progress" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
         <record id="view_taskss_tree" model="ir.ui.view">
             <field name="name">taskss.tree</field>
             <field name="model">taskss</field>
@@ -49,7 +60,6 @@
                     <field name="taskss_id"/>
                     <field name="taskss_name"/>
                     <field name="nhan_vien_ids" widget="many2many_tags" options="{'no_create': True, 'no_open': False}"/>
-                    <!-- <field name="assigned_to"/> -->
                     <field name="start_date"/>
                     <field name="deadline"/>
                     <field name="priority"/>
@@ -74,7 +84,6 @@
                     <field name="taskss_id"/>
                     <field name="taskss_name"/>
                     <field name="nhan_vien_ids" widget="many2many_tags" options="{'no_create': True, 'no_open': False}"/>
-                    <!-- <field name="assigned_to"/> -->
                     <field name="start_date"/>
                     <field name="deadline"/>
                     <field name="priority"/>
@@ -95,6 +104,12 @@
             <field name="res_model">taskss</field>
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_taskss_search"/>
+        </record>
+
+        <record id="action_bieu_do_cong_viec" model="ir.actions.act_window">
+            <field name="name">Biểu Đồ Công Việc</field>
+            <field name="res_model">taskss</field>
+            <field name="view_mode">graph</field>
         </record>
 
     </data>

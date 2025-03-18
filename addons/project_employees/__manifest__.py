@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "project_management",
+    'name': "project_employees",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -20,27 +20,14 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'nhan_su'],
+    'depends': ['base'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/projects.xml',
-        'views/employees.xml',
-        'views/taskss.xml',
-        'views/budgets.xml',
-        'views/expenses.xml',
-        'views/chart.xml',
-        'views/chartoftasks.xml',
+        'views/employeess.xml',
         'views/menu.xml',
     ],
-
-    # 'assets': {
-    #     'web.assets_backend': [
-    #         'project_management\static\src\projects.css',
-    #     ],
-    # },
-
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',

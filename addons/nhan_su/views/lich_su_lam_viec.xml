@@ -11,6 +11,7 @@
                         <div class="oe_read_only" style="font-size:25px">Lịch sử làm việc</div>
                         <group col="4" string="Thông tin chung">
                             <field name="nhan_vien_id"/>
+                            <field name="ten_cong_viec"/>
                             
                         </group>
                     </sheet>
@@ -24,6 +25,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="nhan_vien_id"/>
+                    <field name="ten_cong_viec"/>
                     
                 </tree>
             </field>
@@ -35,11 +37,10 @@
             <field name="arch" type="xml">
                 <search>
                     <field name="nhan_vien_id"/>
-                    
+                    <field name="ten_cong_viec"/>
+
                     <searchpanel>
                         <field name="nhan_vien_id" select="multi"/>
-                        <!-- <field name="chuc_vu_id" select="multi"/>
-                        <field name="phong_ban_id" select="multi"/> -->
                     </searchpanel>
                 </search>
             </field>
