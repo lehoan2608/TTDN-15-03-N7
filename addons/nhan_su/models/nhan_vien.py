@@ -26,6 +26,7 @@ class NhanVien(models.Model):
     que_quan = fields.Char("Quê quán")
     email = fields.Char("Email")
     so_dien_thoai = fields.Char("Số điện thoại")
+    salary = fields.Char(string="Mức lương", help="Mức lương của nhân viên")
     
     lich_su_lam_viec_ids = fields.One2many('lich_su_lam_viec', inverse_name='nhan_vien_id', string='Danh sách LSLV')
     
@@ -42,15 +43,6 @@ class NhanVien(models.Model):
         for record in self:
             if record.ho_ten_dem and record.ten:
                 record.ho_ten = record.ho_ten_dem + ' ' + record.ten
-
-    # @api.depends("ho_ten_dem", "ten")
-    # def _tinh_ma_dinh_danh(self):
-    #     for record in self:
-    #         if record.ho_ten_dem and record.ten:
-    #             chu_cai_dau = ''.join([tu[0] for tu in record.ho_ten_dem.lower().split() if tu])
-    #             record.nhan_vien_id = (record.ten.lower() + chu_cai_dau).strip()
-    #         else:
-    #             record.nhan_vien_id = False
 
     def name_get(self):
         result = []

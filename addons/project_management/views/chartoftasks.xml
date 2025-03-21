@@ -44,7 +44,6 @@
             <field name="model">taskss</field>
             <field name="arch" type="xml">
                 <graph string="Biểu Đồ Tiến Độ Công Việc" type="bar">
-                    <!-- <field name="projects_id" type="row"/> -->
                     <field name="taskss_id" type="dimension"/>
                     <field name="progress" type="measure"/>
                 </graph>

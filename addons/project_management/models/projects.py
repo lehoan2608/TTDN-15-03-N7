@@ -27,45 +27,19 @@ class Projects(models.Model):
 
     ly_do_1 = fields.Text(string="Lý do hủy bỏ", help="Lý do hủy bỏ công việc")
 
-    # status_class = fields.Char(string='Status Class', compute='_compute_status_class', store=True)
-
-    # @api.depends('status')
-    # def _compute_status_class(self):
-    #     for record in self:
-    #         if record.status == 'not_started':
-    #             record.status_class = 'status-not-started'
-    #         elif record.status == 'in_progress':
-    #             record.status_class = 'status-in-progress'
-    #         elif record.status == 'completed':
-    #             record.status_class = 'status-completed'
-    #         elif record.status == 'delayed':
-    #             record.status_class = 'status-delayed'
-    #         elif record.status == 'cancelled':
-    #             record.status_class = 'status-cancelled'
-    #         else:
-    #             record.status_class = ''
-
-    # status_display = fields.Html(string="Status Display", compute="_compute_status_display", sanitize=False)
-
-
     task_ids = fields.One2many('taskss', inverse_name='projects_id', String='Công việc') 
 
-    @api.depends('start_date', 'actual_end_date')
+    @api.depends('task_ids.status')
     def _compute_progress(self):
-        today = date.today()
         for project in self:
-            if project.start_date and project.actual_end_date:
-                total_days = (project.actual_end_date - project.start_date).days
-                elapsed_days = (today - project.start_date).days
-
-                if total_days > 0:
-                    project.progress = max(0, min(100, (elapsed_days / total_days) * 100))
-                else:
-                    project.progress = 100 if today >= project.actual_end_date else 0
+            total_tasks = len(project.task_ids)
+            completed_tasks = len(project.task_ids.filtered(lambda task: task.status == 'completed'))
+            
+            if total_tasks > 0:
+                project.progress = (completed_tasks / total_tasks) * 100
             else:
                 project.progress = 0
 
-    # nhan_vien_ids = fields.Many2many('nhan_vien', string='Thành viên tham gia', help='Chọn các thành viên tham gia dự án')
 
     def name_get(self):
         result = []

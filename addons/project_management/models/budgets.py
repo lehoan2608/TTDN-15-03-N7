@@ -25,13 +25,6 @@ class Budgets(models.Model):
         for record in self:
             record.budget_spent = sum(record.expense_ids.mapped('amount'))
 
-    # @api.depends('projects_id.expense_ids.amount')
-    # def _compute_budget_spent(self):
-    #     for record in self:
-    #         if record.projects_id:
-    #             record.budget_spent = sum(record.projects_id.expense_ids.mapped('amount'))
-    #         else:
-    #             record.budget_spent = 0
 
 
     @api.depends('budget_planned', 'budget_spent')
