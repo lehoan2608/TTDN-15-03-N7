@@ -26,7 +26,8 @@ class NhanVien(models.Model):
     que_quan = fields.Char("Quê quán")
     email = fields.Char("Email")
     so_dien_thoai = fields.Char("Số điện thoại")
-    salary = fields.Char(string="Mức lương", help="Mức lương của nhân viên")
+    # salary = fields.Char(string="Mức lương", help="Mức lương của nhân viên")
+    image = fields.Binary("Ảnh nhân viên")
     
     lich_su_lam_viec_ids = fields.One2many('lich_su_lam_viec', inverse_name='nhan_vien_id', string='Danh sách LSLV')
     

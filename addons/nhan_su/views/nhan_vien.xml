@@ -23,6 +23,7 @@
                             <field name="email"/>
                             <field name="so_dien_thoai"/>
                             <field name="phong_ban_id"/>
+                            <field name="image" widget="image" class="oe_avatar" options='{"preview_image": "image"}'/>
 
                         </group>
                         <notebook>
@@ -49,6 +50,7 @@
                     <field name="email"/>
                     <field name="so_dien_thoai"/>
                     <field name="phong_ban_id"/>
+                    <field name="image" widget="image" class="oe_avatar" options='{"preview_image": "image"}'/>
 
                 </tree>
             </field>
